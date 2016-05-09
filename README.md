@@ -1,2 +1,2 @@
 # TestFramework
-Selenium Test Framework
+This Selenium Test Framework is build for learning purposes.

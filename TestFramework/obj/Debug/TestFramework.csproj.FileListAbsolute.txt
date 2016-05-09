@@ -1,0 +1,9 @@
+C:\Users\flaviu.cos\Documents\Visual Studio 2015\Projects\TestFramework\TestFramework\obj\Debug\TestFramework.csprojResolveAssemblyReference.cache
+C:\Users\flaviu.cos\Documents\Visual Studio 2015\Projects\TestFramework\TestFramework\bin\Debug\TestFramework.dll
+C:\Users\flaviu.cos\Documents\Visual Studio 2015\Projects\TestFramework\TestFramework\bin\Debug\TestFramework.pdb
+C:\Users\flaviu.cos\Documents\Visual Studio 2015\Projects\TestFramework\TestFramework\bin\Debug\WebDriver.dll
+C:\Users\flaviu.cos\Documents\Visual Studio 2015\Projects\TestFramework\TestFramework\bin\Debug\WebDriver.Support.dll
+C:\Users\flaviu.cos\Documents\Visual Studio 2015\Projects\TestFramework\TestFramework\bin\Debug\WebDriver.xml
+C:\Users\flaviu.cos\Documents\Visual Studio 2015\Projects\TestFramework\TestFramework\bin\Debug\WebDriver.Support.xml
+C:\Users\flaviu.cos\Documents\Visual Studio 2015\Projects\TestFramework\TestFramework\obj\Debug\TestFramework.dll
+C:\Users\flaviu.cos\Documents\Visual Studio 2015\Projects\TestFramework\TestFramework\obj\Debug\TestFramework.pdb

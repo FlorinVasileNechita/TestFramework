@@ -1,0 +1,12 @@
+C:\Users\flaviu.cos\Documents\Visual Studio 2015\Projects\TestFramework\Tests\obj\Debug\Tests.csprojResolveAssemblyReference.cache
+C:\Users\flaviu.cos\Documents\Visual Studio 2015\Projects\TestFramework\Tests\bin\Debug\Tests.dll
+C:\Users\flaviu.cos\Documents\Visual Studio 2015\Projects\TestFramework\Tests\bin\Debug\Tests.pdb
+C:\Users\flaviu.cos\Documents\Visual Studio 2015\Projects\TestFramework\Tests\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+C:\Users\flaviu.cos\Documents\Visual Studio 2015\Projects\TestFramework\Tests\bin\Debug\nunit.framework.dll
+C:\Users\flaviu.cos\Documents\Visual Studio 2015\Projects\TestFramework\Tests\bin\Debug\TestFramework.dll
+C:\Users\flaviu.cos\Documents\Visual Studio 2015\Projects\TestFramework\Tests\bin\Debug\WebDriver.dll
+C:\Users\flaviu.cos\Documents\Visual Studio 2015\Projects\TestFramework\Tests\bin\Debug\TestFramework.pdb
+C:\Users\flaviu.cos\Documents\Visual Studio 2015\Projects\TestFramework\Tests\bin\Debug\nunit.framework.xml
+C:\Users\flaviu.cos\Documents\Visual Studio 2015\Projects\TestFramework\Tests\bin\Debug\WebDriver.xml
+C:\Users\flaviu.cos\Documents\Visual Studio 2015\Projects\TestFramework\Tests\obj\Debug\Tests.dll
+C:\Users\flaviu.cos\Documents\Visual Studio 2015\Projects\TestFramework\Tests\obj\Debug\Tests.pdb

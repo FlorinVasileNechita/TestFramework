@@ -6,7 +6,7 @@ namespace TestFramework
 {
     public static class Browser
     {
-        static IWebDriver webDriver = new FirefoxDriver();
+       public static IWebDriver webDriver = new FirefoxDriver();
 
         public static string Title
         {
@@ -16,11 +16,13 @@ namespace TestFramework
         internal static void Goto(string url)
         {
             webDriver.Url = url;
+           
         }
 
         public static void Close()
         {
             webDriver.Close();
         }
+
     }
 }

@@ -13,33 +13,36 @@ namespace Tests
 
         [TestInitialize]
         [SetUp]
+        
+        
+        [Test]
+        [TestMethod]
+        public void Login_to_wordpress()
+        {
+            Pages.LoginPage.Goto();
+            //NUnit.Framework.Assert.IsTrue(Pages.xbox_site.IsAt());
+            Pages.LoginPage.MakeLogin();
+           
+        }
 
-
-
+        [Test]
+        [TestMethod]
+        public void Celalalt_site()
+        {
+            xbox_site.TestInit();
+            xbox_site.SearchFor("Forza 6");
+            xbox_site.FindGame("Forza Motorsport 6 Standard Edition");
+            NUnit.Framework.Assert.AreEqual("$59.99", xbox_site.GetPrice());
+   
+        }
+  
+        
         [TestCleanup]
         [TearDown]
         public void CleanUp()
         {
             Browser.Close();
         }
-
-
-        [Test]
-        [TestMethod]
-        public void Login_to_wordpress()
-        {
-            Pages.LoginPage.Goto();
-            NUnit.Framework.Assert.IsTrue(Pages.LoginPage.IsAt());
-
-        }
-
-        [Test]
-        [TestMethod]
-        public void Add_a_new_post()
-        {
-            Pages.LoginPage.Goto();
-            NUnit.Framework.Assert.IsTrue(Pages.LoginPage.IsAt());
-
-        }
+        
     }
 }

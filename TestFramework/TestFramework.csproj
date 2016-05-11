@@ -49,10 +49,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BasePage.cs" />
     <Compile Include="Browser.cs" />
-    <Compile Include="xbox_site.cs" />
-    <Compile Include="Pages.cs" />
+    <Compile Include="Pages\DashboardPage.cs" />
+    <Compile Include="Pages\LoginPage.cs" />
+    <Compile Include="Pages\NewPostPage.cs" />
+    <Compile Include="Pages\PostsPage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Pages\SideMenu.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

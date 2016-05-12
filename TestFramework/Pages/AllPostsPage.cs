@@ -3,11 +3,11 @@ using OpenQA.Selenium;
 
 namespace TestFramework.Pages
 {
-    public class PostsPage : BasePage
+    public class AllPostsPage : BasePage
     {
 
-        private static string PageTitle = "Posts ‹ cosflaviu — WordPress";
-
+        // Verify that the page is displayed
+        private string PageTitle = "Posts ‹ cosflaviu — WordPress";
         public override bool IsAt()
         {
             return Browser.Title == PageTitle;

@@ -53,8 +53,9 @@
     <Compile Include="Browser.cs" />
     <Compile Include="Pages\DashboardPage.cs" />
     <Compile Include="Pages\LoginPage.cs" />
-    <Compile Include="Pages\NewPostPage.cs" />
-    <Compile Include="Pages\PostsPage.cs" />
+    <Compile Include="Pages\CreateNewPostPage.cs" />
+    <Compile Include="Pages\CreatedPostPage.cs" />
+    <Compile Include="Pages\AllPostsPage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Pages\SideMenu.cs" />
   </ItemGroup>

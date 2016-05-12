@@ -5,10 +5,11 @@ namespace TestFramework.Pages
 {
     public class SideMenu
     {
-        public PostsPage ClickOnPosts()
+
+        public AllPostsPage ClickOnPosts()
         {
             Browser.FindElement(By.Id("menu-posts")).Click();
-            return new PostsPage();
+            return new AllPostsPage();
         }
     }
 }

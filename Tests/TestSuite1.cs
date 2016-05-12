@@ -15,7 +15,7 @@ namespace Tests
         {
             string Url = "https://cosflaviu.wordpress.com/wp-admin/";
             Browser.Goto(Url);
-            Browser.Wait();
+            Browser.Wait();  
             LoginPage loginPage = new LoginPage();
             NUnit.Framework.Assert.IsTrue(loginPage.IsAt());
         }
@@ -30,43 +30,34 @@ namespace Tests
             string postTitle = "Post1";
             string postDescription = "Description";
 
-            // Initialize page objects
+            //1.Login with admin account;  
             CreateNewPostPage createNewPostPage = new CreateNewPostPage();
             LoginPage loginPage = new LoginPage();
             DashboardPage dashboardPage = loginPage.MakeLogin(userName , password);
-
-            // Verify that the current page is the Dashboard page
             NUnit.Framework.Assert.IsTrue(dashboardPage.IsAt());
 
+            //2.Click on Posts button from the side menu;
             AllPostsPage allPostsPage = dashboardPage.sideMenu.ClickOnPosts();
-
-            // Verify that the current page is the All Posts Page page
             NUnit.Framework.Assert.IsTrue(allPostsPage.IsAt());
 
+            //3.Click on 'Add New' button;
             allPostsPage.ClickOnAddNew();
-            allPostsPage.sideMenu.ClickOnPosts();
-
-            // Verify that the current page is the Create New Page page
             NUnit.Framework.Assert.IsTrue(createNewPostPage.IsAt());
 
+            //4.Give the post a title and a description and click on 'Publish' button;
             createNewPostPage.AddTitle(postTitle);
             createNewPostPage.AddDescription(postDescription);
-            createNewPostPage.Publish();
-
-            // Verify that 
+            createNewPostPage.Publish(); 
             NUnit.Framework.Assert.IsTrue(createNewPostPage.IsPublishedSuccessfully());
 
+            //5.Click on the 'View post' link;
             createNewPostPage.ViewPost();
 
-            CreatedPostPage createdPostPage = new CreatedPostPage();
-
-            // Verify that the post Title is correct
+            //6.Verify if the title and the description are correct.
+            CreatedPostPage createdPostPage = new CreatedPostPage();       
             NUnit.Framework.Assert.AreEqual(createdPostPage.CheckTitle(), (postTitle));
-
-            // Verify that the post Description is correct
             NUnit.Framework.Assert.AreEqual(createdPostPage.CheckDescription(), (postDescription));
         }
-        
 
         [TestCleanup]
         [TearDown]

@@ -59,6 +59,35 @@ namespace Tests
             NUnit.Framework.Assert.AreEqual(createdPostPage.CheckDescription(), (postDescription));
         }
 
+
+        [Test]
+        [TestMethod]
+        public void Edit_Existing_Post()
+        {
+            //variables used in the test
+            string userName = "cosflaviu";
+            string password = "test@1234";
+            string postTitle = "Post1";
+            string postDescription = "Description Updated";
+
+            //1.Login with admin account;  
+            CreateNewPostPage createNewPostPage = new CreateNewPostPage();
+            LoginPage loginPage = new LoginPage();
+            DashboardPage dashboardPage = loginPage.MakeLogin(userName, password);
+            NUnit.Framework.Assert.IsTrue(dashboardPage.IsAt());
+
+
+            //2.Click on Posts button from the side menu;
+            //3.Hover over Post title and click on 'Edit' option;
+            //4.Edit the description;
+            //5.Click on the 'Update' button;
+            //6.Click on the 'View post' link;
+            //7.Verify if the updated description is displayed.
+
+
+        }
+
+
         [TestCleanup]
         [TearDown]
         public void CleanUp()

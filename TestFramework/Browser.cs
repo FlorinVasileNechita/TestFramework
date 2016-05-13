@@ -11,7 +11,9 @@ namespace TestFramework
         public static IWebDriver webDriver;
         public static void InitBrowser()
         {
-            webDriver = new FirefoxDriver();
+            FirefoxBinary firefoxBinary = new FirefoxBinary("C:\\Program Files (x86)\\Mozilla Firefox\\firefox.exe");  
+            FirefoxProfile firefoxProfile = new FirefoxProfile();
+            webDriver = new FirefoxDriver(firefoxBinary, firefoxProfile);
         }
 
         // Get the Page title
@@ -23,7 +25,7 @@ namespace TestFramework
         // Go to URL
         public static void Goto(string url)
         {
-            webDriver.Url = url;
+            webDriver.Navigate().GoToUrl(url);
         }
 
         // Wait the page to load

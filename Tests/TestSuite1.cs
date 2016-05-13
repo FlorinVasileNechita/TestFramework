@@ -5,8 +5,8 @@ using TestFramework.Pages;
 
 namespace Tests
 {
-    [TestFixture]
     [TestClass]
+    [TestFixture]
     public class TestSuite1
     {
         [TestInitialize]
@@ -14,14 +14,16 @@ namespace Tests
         public void SetUp()
         {
             string Url = "https://cosflaviu.wordpress.com/wp-admin/";
+            Browser.InitBrowser();
             Browser.Goto(Url);
             Browser.Wait();  
             LoginPage loginPage = new LoginPage();
             NUnit.Framework.Assert.IsTrue(loginPage.IsAt());
         }
 
-        [Test]
+
         [TestMethod]
+        [Test]
         public void Add_New_Post()
         {
             //variables used in the test
@@ -59,16 +61,16 @@ namespace Tests
             NUnit.Framework.Assert.AreEqual(createdPostPage.CheckDescription(), (postDescription));
         }
 
-
-        [Test]
         [TestMethod]
+        [Test]
         public void Edit_Existing_Post()
         {
             //variables used in the test
             string userName = "cosflaviu";
             string password = "test@1234";
             string postTitle = "Post1";
-            string postDescription = "Description Updated";
+            string postDescription = "Description";
+            string updateDescription = " Updated";
 
             //1.Login with admin account;  
             CreateNewPostPage createNewPostPage = new CreateNewPostPage();
@@ -76,14 +78,57 @@ namespace Tests
             DashboardPage dashboardPage = loginPage.MakeLogin(userName, password);
             NUnit.Framework.Assert.IsTrue(dashboardPage.IsAt());
 
-
             //2.Click on Posts button from the side menu;
-            //3.Hover over Post title and click on 'Edit' option;
-            //4.Edit the description;
-            //5.Click on the 'Update' button;
-            //6.Click on the 'View post' link;
-            //7.Verify if the updated description is displayed.
+            AllPostsPage allPostsPage = dashboardPage.sideMenu.ClickOnPosts();
+            NUnit.Framework.Assert.IsTrue(allPostsPage.IsAt());
 
+            //3.Hover over Post title and click on 'Edit' option;
+            allPostsPage.HoverOverPost();
+            allPostsPage.ClickOnEditPost();
+
+            //4.Edit the description;
+            createNewPostPage.AddDescription(updateDescription);
+
+            //5.Click on the 'Update' button;
+            createNewPostPage.Publish();
+            
+            //6.Click on the 'View post' link;
+            createNewPostPage.ViewPost();
+
+            //7.Verify if the updated description is displayed.
+            CreatedPostPage createdPostPage = new CreatedPostPage();
+            NUnit.Framework.Assert.AreEqual(createdPostPage.CheckTitle(), (postTitle));
+            NUnit.Framework.Assert.AreEqual(createdPostPage.CheckDescription(), postDescription + updateDescription);
+
+        }
+
+        [TestMethod]
+        [Test]
+        public void Delete_Existing_Post()
+        {
+            //variables used in the test
+            string userName = "cosflaviu";
+            string password = "test@1234";
+            string postTitle = "Post1";
+            string postDescription = "Description";
+            string updateDescription = " Updated";
+
+            //1. Login with admin account;  
+            CreateNewPostPage createNewPostPage = new CreateNewPostPage();
+            LoginPage loginPage = new LoginPage();
+            DashboardPage dashboardPage = loginPage.MakeLogin(userName, password);
+            NUnit.Framework.Assert.IsTrue(dashboardPage.IsAt());
+
+            //2. Click on Posts button from the side menu;
+            AllPostsPage allPostsPage = dashboardPage.sideMenu.ClickOnPosts();
+            NUnit.Framework.Assert.IsTrue(allPostsPage.IsAt());
+
+            //3. Hover over Post title and click on 'Trash' option;
+            allPostsPage.HoverOverPost();
+            allPostsPage.ClickOnTrashPost();
+
+            //4. Verify that '1 post moved to Trash.' message is displayed.
+            NUnit.Framework.Assert.IsTrue(createNewPostPage.IsTrashedSuccessfully());
 
         }
 

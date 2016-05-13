@@ -1,15 +1,20 @@
 ﻿using System;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
+using OpenQA.Selenium.Interactions;
 
 namespace TestFramework
 {
     public static class Browser
     {
         // Initiate Firefox driver
-        public static IWebDriver webDriver = new FirefoxDriver();
+        public static IWebDriver webDriver;
+        public static void InitBrowser()
+        {
+            webDriver = new FirefoxDriver();
+        }
 
-        //Get the Page title
+        // Get the Page title
         public static string Title
         {
             get { return webDriver.Title; }
@@ -21,13 +26,13 @@ namespace TestFramework
             webDriver.Url = url;
         }
 
-        //Wait the page to load
+        // Wait the page to load
         public static void Wait()
         {
             webDriver.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromSeconds(10)); 
         }
 
-        //FindElement method
+        // FindElement method
         public static IWebElement FindElement(By by)
         {
 
@@ -46,7 +51,14 @@ namespace TestFramework
             webDriver.SwitchTo().DefaultContent();
         }
 
-        //Close Firefox driver
+        // Mouse over
+        public static void Hover(By by)
+        {
+            Actions action = new Actions(webDriver);
+            action.MoveToElement(FindElement(by)).Perform();
+        }
+
+        // Close Firefox driver
         public static void Close()
         {
             webDriver.Close();

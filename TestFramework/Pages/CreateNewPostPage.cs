@@ -23,6 +23,16 @@ namespace TestFramework.Pages
                 return true;
         }
 
+        // Verify if the post is successfully created
+        public bool IsTrashedSuccessfully()
+        {
+            if (Browser.FindElement(By.XPath("//div[@id='message']/p")) == null)
+            {
+                return false;
+            }
+            return true;
+        }
+
         // Add a Title to the post
         public void AddTitle(string titleName)
         {

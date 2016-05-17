@@ -12,7 +12,7 @@ namespace TestFramework.Pages
             return Browser.Title == PageTitle;
         }
 
-        // Login Method
+        // Login with provided username and password
         public DashboardPage MakeLogin(string userName, string password)
         {
             Browser.FindElement(By.Id("user_login")).SendKeys(userName);

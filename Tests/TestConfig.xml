@@ -1,5 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?> 
 <configuration>
 <url />
-<user username="" pass=""></user>
+  <user>
+    <username>cosflaviu</username>
+    <pass>test@1234</pass>
+  </user>
 </configuration>

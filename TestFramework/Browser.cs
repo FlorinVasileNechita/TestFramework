@@ -37,7 +37,6 @@ namespace TestFramework
         // FindElement method
         public static IWebElement FindElement(By by)
         {
-
             return webDriver.FindElement(by);
         }
 

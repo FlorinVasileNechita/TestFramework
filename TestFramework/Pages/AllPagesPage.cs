@@ -2,10 +2,10 @@
 
 namespace TestFramework.Pages
 {
-    public class CreateNewPostPage : CreateNewBasePage
+    public class AllPagesPage : AllBasePage
     {
         // Verify that the page is displayed
-        private string PageTitle = "Add New Post ‹ cosflaviu — WordPress";
+        private string PageTitle = "Pages ‹ cosflaviu — WordPress";
         public override bool IsAt()
         {
             return Browser.Title == PageTitle;

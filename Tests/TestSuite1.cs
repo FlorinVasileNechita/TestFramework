@@ -231,18 +231,38 @@ namespace Tests
             NUnit.Framework.Assert.IsTrue(createNewPagePage.IsTrashedSuccessfully());
         }
 
-
         [TestMethod]
         [Test]
         public void Edit_sharing_buttons_order_in_settings()
         {
-            //1. Login with admin account;
+            //variables used in the test
+            string userName = "cosflaviu";
+            string password = "test@1234";
+
+            //1. Login with admin account;  
+            CreateNewPagePage createNewPagePage = new CreateNewPagePage();
+            LoginPage loginPage = new LoginPage();
+            DashboardPage dashboardPage = loginPage.MakeLogin(userName, password);
+            NUnit.Framework.Assert.IsTrue(dashboardPage.IsAt());
+
             //2. Click on 'Settings' button from the sidemenu;
+            GeneralSettingsPage generalSettingsPage = dashboardPage.sideMenu.ClickOnSettings();
+            NUnit.Framework.Assert.IsTrue(generalSettingsPage.IsAt());
+
             //3. Click on 'Sharing' button from settings undemenu;
+            SharingSettingsPage sharingSettingsPage = dashboardPage.sideMenu.ClickOnSharing();
+            NUnit.Framework.Assert.IsTrue(sharingSettingsPage.IsAt());
+
             //4. Add two new services from the Available Services to Enabled Services using drang and drop;
+            //sharingSettingsPage.DragAndDropNative();
+            sharingSettingsPage.DragAndDrop();
+
+
             //5. Go to All posts page;
             //6. Hover over any post and clik on 'View' link;
             //7. Verify that the two new services added at step(4) are present in the 'Share this:' section.
+            //8. Go back to the 'Sharing' settings;
+            //9. Remove the Services added at step (4).
         }
 
 

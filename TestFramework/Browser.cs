@@ -13,6 +13,7 @@ namespace TestFramework
         {
             FirefoxBinary firefoxBinary = new FirefoxBinary("C:\\Program Files (x86)\\Mozilla Firefox\\firefox.exe");  
             FirefoxProfile firefoxProfile = new FirefoxProfile();
+            firefoxProfile.EnableNativeEvents = true;
             webDriver = new FirefoxDriver(firefoxBinary, firefoxProfile);
         }
 
@@ -57,6 +58,21 @@ namespace TestFramework
         {
             Actions action = new Actions(webDriver);
             action.MoveToElement(FindElement(by)).Perform();
+        }
+
+        // Drag and drop
+        public static void DragAndDrop(IWebElement elementToDrag, IWebElement placeToDrop)
+        {
+            Actions action = new Actions(webDriver);
+            IAction dragAndDrop = action.ClickAndHold(elementToDrag).MoveToElement(placeToDrop).Release(placeToDrop).Build();
+            dragAndDrop.Perform();
+        }
+
+        // Native Drag and drop
+        public static void DragAndDropNative(IWebElement elementToDrag, IWebElement placeToDrop)
+        {
+            Actions action = new Actions(webDriver);
+            action.DragAndDrop(elementToDrag, placeToDrop).Perform();
         }
 
         // Close Firefox driver

@@ -63,6 +63,8 @@
     <Compile Include="Pages\CreateNewPostPage.cs" />
     <Compile Include="Pages\CreatedPostPage.cs" />
     <Compile Include="Pages\AllPostsPage.cs" />
+    <Compile Include="Pages\GeneralSettingsPage.cs" />
+    <Compile Include="Pages\SharingSettingsPage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Pages\SideMenu.cs" />
   </ItemGroup>

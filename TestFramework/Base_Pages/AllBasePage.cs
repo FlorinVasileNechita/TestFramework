@@ -10,6 +10,16 @@ namespace TestFramework.Base_Pages
             Browser.FindElement(By.ClassName("page-title-action")).Click();
         }
 
+        // Verify if the post/page is successfully removed
+        public bool IsTrashedSuccessfully()
+        {
+            if (Browser.FindElement(By.XPath("//div[@id='message']/p")) == null)
+            {
+                return false;
+            }
+            return true;
+        }
+
         // Hover over the first item
         public void Hover()
         {
@@ -27,6 +37,11 @@ namespace TestFramework.Base_Pages
         {
             Browser.FindElement(By.XPath("//tbody[@id='the-list']/tr[1]/td[1]/div[3]/span[3]/a")).Click();
         }
+
+        // Click on View link
+        public void ClickOnView()
+        {
+            Browser.FindElement(By.XPath("//tbody[@id='the-list']/tr[1]/td[1]/div[3]/span[4]/a")).Click();
+        }
     }
 }
-

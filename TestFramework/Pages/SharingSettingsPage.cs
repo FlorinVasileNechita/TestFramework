@@ -11,21 +11,26 @@ namespace TestFramework.Pages
             return Browser.Title == PageTitle;
         }
 
-        public void DragAndDrop()
+        // Drag element from 'Available Services' and drop it to 'Enabled Services'
+        public void DragAndDropFromAvailableToEnabled()
         {
-            IWebElement sourceElement = Browser.FindElement(By.XPath("/html/body/div[2]/div[2]/div[3]/div[1]/div[3]/div[2]/div[1]/table[1]/tbody/tr/td[2]/ul/li[1]"));
-            IWebElement targetElement = Browser.FindElement(By.XPath("/html/body/div[2]/div[2]/div[3]/div[1]/div[3]/div[2]/div[1]/table[2]/tbody/tr/td[2]/ul"));
+            IWebElement sourceElement = Browser.FindElement(By.XPath("//table[@id='available-services']/tbody/tr/td[2]/ul/li[1]"));
+            IWebElement targetElement = Browser.FindElement(By.XPath("//table[@id='enabled-services']/tbody/tr/td[2]/ul"));
             Browser.DragAndDrop(sourceElement, targetElement);
         }
 
-        public void DragAndDropNative()
+        // Drag element from 'Enabled Services' and drop it to 'Available Services'
+        public void DragAndDropFromEnabledToAvailable()
         {
-            //IWebElement sourceElement = Browser.FindElement(By.XPath("/html/body/div[2]/div[2]/div[3]/div[1]/div[3]/div[2]/div[1]/table[1]/tbody/tr/td[2]/ul/li[1]"));
-            //IWebElement targetElement = Browser.FindElement(By.XPath("/html/body/div[2]/div[2]/div[3]/div[1]/div[3]/div[2]/div[1]/table[2]/tbody/tr/td[2]/ul"));
-            IWebElement sourceElement = Browser.FindElement(By.Id("tumblr"));
-            IWebElement targetElement = Browser.FindElement(By.Id("share-drop-target"));
-            Browser.DragAndDropNative(sourceElement, targetElement);
+            IWebElement sourceElement = Browser.FindElement(By.XPath("//table[@id='enabled-services']/tbody/tr/td[2]/ul/li[1]"));
+            IWebElement targetElement = Browser.FindElement(By.XPath("//table[@id='available-services']/tbody/tr/td[2]/ul"));
+            Browser.DragAndDrop(sourceElement, targetElement);
         }
 
+        // Count the sharing options form the Enabled Services section
+        public int EnabledServicesCount()
+        {
+           return Browser.FindElements(By.XPath("//table[@id='enabled-services']/tbody/tr/td[2]/ul/li")).Count;
+        }
     }
 }

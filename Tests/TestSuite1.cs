@@ -16,23 +16,22 @@ namespace Tests
             string Url = "https://cosflaviu.wordpress.com/wp-admin/";
             Browser.InitBrowser();
             Browser.Goto(Url);
-            Browser.Wait();
+            //Browser.Wait();
             LoginPage loginPage = new LoginPage();
             NUnit.Framework.Assert.IsTrue(loginPage.IsAt());
         }
 
         [TestMethod]
-        [Test]
+        [Test, Order(1)]
         public void Add_New_Post()
         {
             //variables used in the test
             string userName = "cosflaviu";
             string password = "test@1234";
-            string postTitle = "Post1";
-            string postDescription = "Description";
+            string Title = "Post1";
+            string Description = "Description";
 
             //1.Login with admin account;  
-            CreateNewPostPage createNewPostPage = new CreateNewPostPage();
             LoginPage loginPage = new LoginPage();
             DashboardPage dashboardPage = loginPage.MakeLogin(userName, password);
             NUnit.Framework.Assert.IsTrue(dashboardPage.IsAt());
@@ -42,12 +41,13 @@ namespace Tests
             NUnit.Framework.Assert.IsTrue(allPostsPage.IsAt());
 
             //3.Click on 'Add New' button;
+            CreateNewPostPage createNewPostPage = new CreateNewPostPage();
             allPostsPage.ClickOnAddNew();
             NUnit.Framework.Assert.IsTrue(createNewPostPage.IsAt());
 
-            //4.Give the post a title and a description and click on 'ClickOnPublish' button;
-            createNewPostPage.AddTitle(postTitle);
-            createNewPostPage.AddDescription(postDescription);
+            //4.Give the post a title and a description and click on 'Publish' button;
+            createNewPostPage.AddTitle(Title);
+            createNewPostPage.AddDescription(Description);
             createNewPostPage.ClickOnPublish();
             NUnit.Framework.Assert.IsTrue(createNewPostPage.IsPublishedSuccessfully());
 
@@ -56,23 +56,23 @@ namespace Tests
 
             //6.Verify if the title and the description are correct.
             CreatedPostPage createdPostPage = new CreatedPostPage();
-            NUnit.Framework.Assert.AreEqual(createdPostPage.CheckTitle(), (postTitle));
-            NUnit.Framework.Assert.AreEqual(createdPostPage.CheckDescription(), (postDescription));
+            NUnit.Framework.Assert.AreEqual(createdPostPage.CheckPageTitle() , string.Format( "{0} – {1}", Title , userName));
+            NUnit.Framework.Assert.AreEqual(createdPostPage.CheckTitle(), (Title));
+            NUnit.Framework.Assert.AreEqual(createdPostPage.CheckDescription(), (Description));
         }
 
         [TestMethod]
-        [Test]
+        [Test, Order(2)]
         public void Edit_Existing_Post()
         {
             //variables used in the test
             string userName = "cosflaviu";
             string password = "test@1234";
-            string postTitle = "Post1";
-            string postDescription = "Description";
+            string Title = "Post1";
+            string Description = "Description";
             string updateDescription = " Updated";
 
             //1.Login with admin account;  
-            CreateNewPostPage createNewPostPage = new CreateNewPostPage();
             LoginPage loginPage = new LoginPage();
             DashboardPage dashboardPage = loginPage.MakeLogin(userName, password);
             NUnit.Framework.Assert.IsTrue(dashboardPage.IsAt());
@@ -86,6 +86,7 @@ namespace Tests
             allPostsPage.ClickOnEdit();
 
             //4.Edit the description;
+            CreateNewPostPage createNewPostPage = new CreateNewPostPage();
             createNewPostPage.AddDescription(updateDescription);
 
             //5.Click on the 'Update' button;
@@ -96,12 +97,12 @@ namespace Tests
 
             //7.Verify if the updated description is displayed.
             CreatedPostPage createdPostPage = new CreatedPostPage();
-            NUnit.Framework.Assert.AreEqual(createdPostPage.CheckTitle(), (postTitle));
-            NUnit.Framework.Assert.AreEqual(createdPostPage.CheckDescription(), postDescription + updateDescription);
+            NUnit.Framework.Assert.AreEqual(createdPostPage.CheckTitle(), (Title));
+            NUnit.Framework.Assert.AreEqual(createdPostPage.CheckDescription(), Description + updateDescription);
         }
 
         [TestMethod]
-        [Test]
+        [Test, Order(3)]
         public void Delete_Existing_Post()
         {
             //variables used in the test
@@ -109,7 +110,6 @@ namespace Tests
             string password = "test@1234";
 
             //1. Login with admin account;  
-            CreateNewPostPage createNewPostPage = new CreateNewPostPage();
             LoginPage loginPage = new LoginPage();
             DashboardPage dashboardPage = loginPage.MakeLogin(userName, password);
             NUnit.Framework.Assert.IsTrue(dashboardPage.IsAt());
@@ -123,21 +123,20 @@ namespace Tests
             allPostsPage.ClickOnTrash();
 
             //4. Verify that '1 post moved to Trash.' message is displayed.
-            NUnit.Framework.Assert.IsTrue(createNewPostPage.IsTrashedSuccessfully());
+            NUnit.Framework.Assert.IsTrue(allPostsPage.IsTrashedSuccessfully());
         }
 
         [TestMethod]
-        [Test]
+        [Test, Order(4)]
         public void Add_New_Page()
         {
             //variables used in the test
             string userName = "cosflaviu";
             string password = "test@1234";
-            string postTitle = "Post1";
-            string postDescription = "Description";
+            string Title = "Page1";
+            string Description = "Description";
 
             //1. Login with admin account;  
-            CreateNewPagePage createNewPagePage = new CreateNewPagePage();
             LoginPage loginPage = new LoginPage();
             DashboardPage dashboardPage = loginPage.MakeLogin(userName, password);
             NUnit.Framework.Assert.IsTrue(dashboardPage.IsAt());
@@ -148,11 +147,12 @@ namespace Tests
 
             //3. Click on 'Add New' button;
             allPagesPage.ClickOnAddNew();
+            CreateNewPagePage createNewPagePage = new CreateNewPagePage();
             NUnit.Framework.Assert.IsTrue(createNewPagePage.IsAt());
 
-            //4. Give the page a title and a description and click on 'ClickOnPublish' button;
-            createNewPagePage.AddTitle(postTitle);
-            createNewPagePage.AddDescription(postDescription);
+            //4. Give the page a title and a description and click on 'Publish' button;
+            createNewPagePage.AddTitle(Title);
+            createNewPagePage.AddDescription(Description);
             createNewPagePage.ClickOnPublish();
             NUnit.Framework.Assert.IsTrue(createNewPagePage.IsPublishedSuccessfully());
 
@@ -161,19 +161,19 @@ namespace Tests
 
             //6. Verify that the title and the description are correct.
             CreatedPagePage createdpagePage = new CreatedPagePage();
-            NUnit.Framework.Assert.AreEqual(createdpagePage.CheckTitle(), (postTitle));
-            NUnit.Framework.Assert.AreEqual(createdpagePage.CheckDescription(), (postDescription));
+            NUnit.Framework.Assert.AreEqual(createdpagePage.CheckTitle(), (Title));
+            NUnit.Framework.Assert.AreEqual(createdpagePage.CheckDescription(), (Description));
         }
 
         [TestMethod]
-        [Test]
+        [Test, Order(5)]
         public void Edit_Existing_Page()
         {
             //variables used in the test
             string userName = "cosflaviu";
             string password = "test@1234";
-            string postTitle = "Post1";
-            string postDescription = "Description";
+            string Title = "Page1";
+            string Description = "Description";
             string updateDescription = " Updated";
 
             //1. Login with admin account;  
@@ -201,12 +201,12 @@ namespace Tests
 
             //7. Verify that the updated content is displayed.
             CreatedPagePage createdPagePage = new CreatedPagePage();
-            NUnit.Framework.Assert.AreEqual(createdPagePage.CheckTitle(), (postTitle));
-            NUnit.Framework.Assert.AreEqual(createdPagePage.CheckDescription(), postDescription + updateDescription);
+            NUnit.Framework.Assert.AreEqual(createdPagePage.CheckTitle(), (Title));
+            NUnit.Framework.Assert.AreEqual(createdPagePage.CheckDescription(), Description + updateDescription);
         }
 
         [TestMethod]
-        [Test]
+        [Test, Order(6)]
         public void Delete_Existing_Page()
         {
             //variables used in the test
@@ -214,7 +214,6 @@ namespace Tests
             string password = "test@1234";
 
             //1. Login with admin account;  
-            CreateNewPagePage createNewPagePage = new CreateNewPagePage();
             LoginPage loginPage = new LoginPage();
             DashboardPage dashboardPage = loginPage.MakeLogin(userName, password);
             NUnit.Framework.Assert.IsTrue(dashboardPage.IsAt());
@@ -228,11 +227,11 @@ namespace Tests
             allPagesPage.ClickOnTrash();
 
             //4. Verify that '1 page moved to Trash.' message is displayed.
-            NUnit.Framework.Assert.IsTrue(createNewPagePage.IsTrashedSuccessfully());
+            NUnit.Framework.Assert.IsTrue(allPagesPage.IsTrashedSuccessfully());
         }
 
         [TestMethod]
-        [Test]
+        [Test, Order(7)]
         public void Edit_sharing_buttons_order_in_settings()
         {
             //variables used in the test
@@ -240,7 +239,6 @@ namespace Tests
             string password = "test@1234";
 
             //1. Login with admin account;  
-            CreateNewPagePage createNewPagePage = new CreateNewPagePage();
             LoginPage loginPage = new LoginPage();
             DashboardPage dashboardPage = loginPage.MakeLogin(userName, password);
             NUnit.Framework.Assert.IsTrue(dashboardPage.IsAt());
@@ -250,21 +248,43 @@ namespace Tests
             NUnit.Framework.Assert.IsTrue(generalSettingsPage.IsAt());
 
             //3. Click on 'Sharing' button from settings undemenu;
-            SharingSettingsPage sharingSettingsPage = dashboardPage.sideMenu.ClickOnSharing();
+            SharingSettingsPage sharingSettingsPage = generalSettingsPage.sideMenu.ClickOnSharing();
             NUnit.Framework.Assert.IsTrue(sharingSettingsPage.IsAt());
 
             //4. Add two new services from the Available Services to Enabled Services using drang and drop;
-            //sharingSettingsPage.DragAndDropNative();
-            sharingSettingsPage.DragAndDrop();
+            int oldNumberOfEnabledServices = sharingSettingsPage.EnabledServicesCount();
+            sharingSettingsPage.DragAndDropFromAvailableToEnabled();
+            sharingSettingsPage.DragAndDropFromAvailableToEnabled();
 
+            //5. Verify that the services added at step (4) are present in the Enabled Services section;
+            int newNumberOfEnabledServices = sharingSettingsPage.EnabledServicesCount();
+            NUnit.Framework.Assert.AreEqual(newNumberOfEnabledServices , oldNumberOfEnabledServices + 2);
 
-            //5. Go to All posts page;
-            //6. Hover over any post and clik on 'View' link;
-            //7. Verify that the two new services added at step(4) are present in the 'Share this:' section.
-            //8. Go back to the 'Sharing' settings;
-            //9. Remove the Services added at step (4).
+            //6. Go to All posts page;
+            sharingSettingsPage.sideMenu.ClickOnPosts();
+
+            //7. Hover over any post and clik on 'View' link;
+            AllPostsPage allPostsPage = new AllPostsPage();
+            allPostsPage.Hover();
+            allPostsPage.ClickOnView();
+
+            //8. Verify that the two new services added at step(4) are present in the 'Share this:' section;
+            CreatedPostPage createdPostPage = new CreatedPostPage();
+            int shareThisElementsOnPost = createdPostPage.ShareElementsCount();
+            NUnit.Framework.Assert.AreEqual(newNumberOfEnabledServices , shareThisElementsOnPost);
+
+            //9. (Cleanup Step) Go back to the 'Sharing' settings;
+            Browser.NavigateBack();
+            allPostsPage.sideMenu.ClickOnSettings();
+            generalSettingsPage.sideMenu.ClickOnSharing();
+
+            //10. (Cleanup Step) Remove the Services added at step (4);
+            sharingSettingsPage.DragAndDropFromEnabledToAvailable();
+            sharingSettingsPage.DragAndDropFromEnabledToAvailable();
+
+            //11. (Cleanup Step) Verify that the two services added at step (4) are removed from the Enabled Services section.
+            NUnit.Framework.Assert.AreEqual(oldNumberOfEnabledServices, newNumberOfEnabledServices - 2);
         }
-
 
         [TestCleanup]
         [TearDown]

@@ -18,7 +18,6 @@ namespace TestFramework
             string restOfLine = textReader.ReadLine();
 
             textReader.Close();
-
         }
     }
 }

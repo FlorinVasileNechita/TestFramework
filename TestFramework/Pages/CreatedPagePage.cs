@@ -12,6 +12,12 @@ namespace TestFramework.Pages
             return Browser.Title == PageTitle;
         }
 
+        // Extract the page title
+        public override string CheckPageTitle()
+        {
+            return Browser.Title;
+        }
+
         // Extract the Title from the page
         public override string CheckTitle()
         {

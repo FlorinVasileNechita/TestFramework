@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace TestFramework.Pages
 {
     public class GeneralSettingsPage : BasePage
@@ -14,6 +9,5 @@ namespace TestFramework.Pages
         {
             return Browser.Title == PageTitle;
         }
-
     }
 }

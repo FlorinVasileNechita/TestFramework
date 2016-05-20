@@ -1,5 +1,4 @@
-﻿using System;
-
+﻿
 namespace TestFramework.Pages
 {
     public class DashboardPage : BasePage

@@ -6,10 +6,15 @@ namespace TestFramework.Pages
     public class CreatedPostPage : CreatedBasePage
     {
         // Verify that the page is displayed
-        private string PageTitle = "Posts ‹ cosflaviu — WordPress";
         public override bool IsAt()
         {
-            return Browser.Title == PageTitle;
+            return true;
+        }
+
+        // Extract the page title
+        public override string CheckPageTitle()
+        {
+            return Browser.Title;
         }
 
         // Extract the Title from the post

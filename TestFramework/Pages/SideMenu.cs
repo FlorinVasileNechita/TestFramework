@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using System;
+using OpenQA.Selenium;
 
 namespace TestFramework.Pages
 {
@@ -30,6 +31,13 @@ namespace TestFramework.Pages
         {
             Browser.FindElement(By.XPath("//li[@id='menu-settings']/ul/li[7]/a")).Click();
             return new SharingSettingsPage();
+        }
+
+        // Click on Appearance button from the side menu
+        public ManageThemesPage ClickOnAppearance()
+        {
+            Browser.FindElement(By.Id("menu-appearance")).Click();
+            return new ManageThemesPage();
         }
     }
 }

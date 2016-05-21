@@ -86,6 +86,19 @@ namespace TestFramework
             webDriver.Navigate().Back();
         }
 
+        // Scroll to element
+        public static void  ScrollDown()
+        {
+            Actions action = new Actions(webDriver);
+            action.SendKeys(Keys.PageDown).Perform();
+        }
+
+        // Element is displayed
+        public static bool IsDisplayed(By by)
+        {
+           return webDriver.FindElement(by).Displayed;
+        }
+
         // Close Firefox driver
         public static void Close()
         {

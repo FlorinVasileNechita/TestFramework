@@ -16,7 +16,7 @@ namespace Tests
             string Url = "https://cosflaviu.wordpress.com/wp-admin/";
             Browser.InitBrowser();
             Browser.Goto(Url);
-            //Browser.Wait();
+            Browser.Wait();
             LoginPage loginPage = new LoginPage();
             NUnit.Framework.Assert.IsTrue(loginPage.IsAt());
         }
@@ -232,7 +232,7 @@ namespace Tests
 
         [TestMethod]
         [Test, Order(7)]
-        public void Edit_sharing_buttons_order_in_settings()
+        public void Enable_sharing_buttons_in_Settings()
         {
             //variables used in the test
             string userName = "cosflaviu";
@@ -284,6 +284,33 @@ namespace Tests
 
             //11. (Cleanup Step) Verify that the two services added at step (4) are removed from the Enabled Services section.
             NUnit.Framework.Assert.AreEqual(oldNumberOfEnabledServices, newNumberOfEnabledServices - 2);
+        }
+
+        [TestMethod]
+        [Test, Order(8)]
+        public void Scroll_through_Themes_and_preview_Hemingway_Theme()
+        {
+            //variables used in the test
+            string userName = "cosflaviu";
+            string password = "test@1234";
+
+            //1. Login with admin account;  
+            LoginPage loginPage = new LoginPage();
+            DashboardPage dashboardPage = loginPage.MakeLogin(userName, password);
+            NUnit.Framework.Assert.IsTrue(dashboardPage.IsAt());
+
+            //2. Click on 'Appearance' button from the sidemenu;
+            ManageThemesPage manageThemesPage = dashboardPage.sideMenu.ClickOnAppearance();
+            NUnit.Framework.Assert.IsTrue(manageThemesPage.IsAt());
+
+            //3. Scroll down the themes list until 'Trvl' theme is visible;
+            manageThemesPage.ScrollDownToTheme();
+
+            //4. Hover over the Theme and click on the 'Preview' button;
+            manageThemesPage.Hover();
+            manageThemesPage.ClickOnPreview();
+
+            //5. Close the the theme privew by clicking on the 'X' button.
         }
 
         [TestCleanup]
